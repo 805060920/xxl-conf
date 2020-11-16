@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  context-path: /xxl-conf-admin
+
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+
+  freemarker:
+    templateLoaderPath: classpath:/templates/
+    suffix: .ftl
+    charset: UTF-8
+    request-context-attribute: request
+    settings:
+      number_format: 0.##########
+
+  datasource:
+    url: jdbc:mysql://${xxl.url}:3306/xxl-conf?Unicode=true&characterEncoding=UTF-8
+    username: ${xxl.username}
+    password: ${xxl.password}
+    driver-class-name: com.mysql.jdbc.Driver
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    tomcat:
+      max-wait: 10000
+      max-active: 30
+      test-on-borrow: true
+
+mybatis:
+   mapper-locations: classpath:/mybatis-mapper/*Mapper.xml
+
+
+xxl:
+  conf:
+    confdata:
+      filepath: /data/applogs/xxl-conf/confdata
+    access:
+      token:
